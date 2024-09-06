@@ -11,6 +11,7 @@ services:
     working_dir: /app
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@drizzle-db:5432/nextjs14_db
+      - WATCHPACK_POLLING=true
     depends_on:
       - drizzle-db
     restart: always

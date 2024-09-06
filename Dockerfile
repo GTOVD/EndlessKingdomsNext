@@ -7,8 +7,7 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run build
-
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Change the CMD to run the dev server
+CMD ["npm", "run", "dev"]
