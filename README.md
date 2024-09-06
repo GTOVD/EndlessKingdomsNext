@@ -1,5 +1,3 @@
-# Create T3 App
-
 # Endless Kingdoms
 
 Endless Kingdoms is a hourly updated, turn-based RPG web game inspired by D&D. This project is built using the [T3 Stack](https://create.t3.gg/) and serves as a stress test for modern web frameworks.
@@ -70,9 +68,6 @@ To deploy Endless Kingdoms using Kubernetes and ArgoCD:
    ```
 
    Note: After running these commands, you can access the ArgoCD UI at `https://localhost:8080`. Use "admin" as the username and the password obtained from the last command.
-   kubectl create namespace argocd
-   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-   ```
 
 3. Configure ArgoCD to watch your repository
 
