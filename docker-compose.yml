@@ -1,30 +1,32 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-      container_name: nextjs14-container
-      ports:
-        - "3000:3000"
-      volumes:
-        - .:/app
-      working_dir: /app
-      restart: always
+    container_name: nextjs14-container
     ports:
       - "3000:3000"
     volumes:
       - .:/app
+    working_dir: /app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@drizzle-db:5432/nextjs14_db
+    depends_on:
+      - drizzle-db
+    restart: always
+
   drizzle-db:
-    image: postgres
+    image: postgres:14
     container_name: nextjs14-drizzle-db
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      PGDATA: /data/postgres
+      POSTGRES_DB: nextjs14_db
     volumes:
-      - ./data/postgres:/data/postgres
+      - postgres_data:/var/lib/postgresql/data
     restart: always
+
+volumes:
+  postgres_data:
