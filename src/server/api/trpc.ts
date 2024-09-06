@@ -10,9 +10,22 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { type NextRequest } from "next/server";
+import { type Session } from "next-auth";
 
 import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
+
+type CreateContextOptions = {
+  session: Session | null;
+};
+
+const createInnerTRPCContext = (opts: CreateContextOptions) => {
+  return {
+    session: opts.session,
+    db,
+  };
+};
 
 /**
  * 1. CONTEXT
@@ -26,14 +39,15 @@ import { db } from "~/server/db";
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: { headers: Headers }) => {
+export const createTRPCContext = async (opts: { req: NextRequest }) => {
+  const { req } = opts;
+
+  // Get the session from the server using the getServerAuthSession function
   const session = await getServerAuthSession();
 
-  return {
-    db,
+  return createInnerTRPCContext({
     session,
-    ...opts,
-  };
+  });
 };
 
 /**
