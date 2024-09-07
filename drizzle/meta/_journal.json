@@ -8,6 +8,13 @@
       "when": 1724553457172,
       "tag": "0000_peaceful_prima",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1725595631298,
+      "tag": "0001_perpetual_morg",
+      "breakpoints": true
     }
   ]
 }

@@ -36,7 +36,7 @@ export const usersRelations = relations(users, ({ many }) => ({
   scores: many(scores),
 }));
 
-export const accounts = mysqlTable(
+export const accounts = mysqlTableCreator((name) => `endless-kingdoms_${name}`)(
   "account",
   {
     userId: varchar("userId", { length: 255 }).notNull(),

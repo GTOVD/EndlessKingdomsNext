@@ -1,10 +1,12 @@
 import "~/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
+import { Inter } from 'next/font/google';
 import { type Metadata } from "next";
 import { headers } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
-import { NavBar } from "~/components/NavBar";
+import { SessionProvider } from "~/components/SessionProvider";
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Endless Kingdoms",
@@ -16,14 +18,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} dark`}>
+    <html lang="en" className={`${inter.className} dark`}>
       <body className="bg-gray-900 text-gray-100 min-h-screen">
-        <TRPCReactProvider headers={headers()}>
-          <NavBar />
-          <main className="container mx-auto mt-8 px-4">
+        <SessionProvider>
+          <TRPCReactProvider headers={headers()}>
             {children}
-          </main>
-        </TRPCReactProvider>
+          </TRPCReactProvider>
+        </SessionProvider>
       </body>
     </html>
   );

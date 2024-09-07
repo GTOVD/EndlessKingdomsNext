@@ -42,6 +42,25 @@ To set up and run Endless Kingdoms locally:
    npm run db:push
    npm run dev
    ```
+   Troubleshooting Docker Commands:
+   ```
+   # View logs for a specific service
+   docker-compose logs -f <service_name>
+   # View logs for all services
+   docker-compose logs -f
+   # Check the status of all services
+   docker-compose ps
+   # Restart a specific service
+   docker-compose restart <service_name>
+   # Stop all services
+   docker-compose down
+   # Check Docker system logs
+   docker system logs
+   # Check Docker network logs
+   docker network inspect -v
+   # Check Docker volume logs
+   docker volume inspect -v
+   ```
 
 5. Access the application at `http://localhost:3000`
 

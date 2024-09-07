@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export function NavBar() {
+export function ClientNavBar() {
   const { data: session, status } = useSession();
 
   return (
